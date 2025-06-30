@@ -5,8 +5,9 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static('public')); // serve index.html
+app.use(express.static('public')); // Serve index.html from /public
 
+// Bot Chat API
 app.post('/api/chat', (req, res) => {
   const msg = req.body.message.toLowerCase();
   let reply = "🤖 আমি বুঝতে পারিনি। একটু সহজভাবে বলো।";
@@ -28,5 +29,8 @@ app.post('/api/chat', (req, res) => {
   res.json({ reply });
 });
 
+// ✅ Port binding for Render
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`✅ Mr Rabbit Bot running at http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`✅ Mr Rabbit Bot running on port ${PORT}`);
+});
